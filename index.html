@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVA | Digital Company</title>
+
+<style>
+/* ===== GLOBAL STYLES ===== */
+:root {
+  --bg: #0b0d12;
+  --card: #151821;
+  --green: #b8ff65;
+  --white: #f5f6fa;
+  --muted: #a4a8b7;
+  --border: rgba(255,255,255,.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, textarea, select {
+  font: inherit;
+}
+
+.container {
+  width: min(1150px, 90%);
+  margin: auto;
+}
+
+section {
+  padding: 100px 0;
+}
+
+h1, h2, h3 {
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  margin: 14px 0 20px;
+}
+
+p {
+  color: var(--muted);
+}
+
+.green {
+  color: var(--green);
+}
+
+.eyebrow {
+  color: var(--green);
+  text-transform: uppercase;
+  font-size: .78rem;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 13px 23px;
+  border-radius: 30px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: .3s;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background: var(--green);
+  color: #10130c;
+  border-color: var(--green);
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(184,255,101,.12);
+}
+
+.btn-outline:hover {
+  border-color: var(--green);
+}
+
+/* ===== NAVIGATION ===== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(11,13,18,.92);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--border);
+}
+
+nav {
+  min-height: 78px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+.logo span {
+  color: var(--green);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links a {
+  font-size: .92rem;
+  color: #d3d5df;
+  transition: .3s;
+}
+
+.nav-links a:hover {
+  color: var(--green);
+}
+
+.menu-btn {
+  display: none;
+  background: transparent;
+  color: white;
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 80% 40%, rgba(184,255,101,.10), transparent 32%),
+    radial-gradient(circle at 10% 80%, rgba(110,85,255,.10), transparent 30%);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 40px;
+}
+
+.hero h1 {
+  font-size: clamp(3.2rem, 7vw, 6.3rem);
+  margin: 22px 0;
+  letter-spacing: -5px;
+}
+
+.hero p {
+  max-width: 530px;
+  font-size: 1.08rem;
+  margin-bottom: 30px;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.hero-visual {
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.orbit {
+  width: min(360px, 85vw);
+  aspect-ratio: 1;
+  border: 1px solid rgba(255,255,255,.17);
+  border-radius: 50%;
+  position: absolute;
+  animation: rotate 25s linear infinite;
+}
+
+.orbit::before {
+  content: "";
+  position: absolute;
+  inset: 15%;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 50%;
+}
+
+.orbit::after {
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  background: var(--green);
+  border-radius: 50%;
+  top: 15%;
+  left: 20%;
+  box-shadow: 0 0 25px var(--green);
+}
+
+.hero-ball {
+  width: 230px;
+  height: 230px;
+  border-radius: 35% 65% 58% 42%;
+  background: linear-gradient(135deg, #d7ffab, #8de23e 60%, #467b19);
+  display: grid;
+  place-items: center;
+  color: #14200b;
+  font-size: 7rem;
+  font-weight: 900;
+  box-shadow: 0 0 90px rgba(184,255,101,.18);
+  animation: morph 7s ease-in-out infinite;
+}
+
+.float-card {
+  position: absolute;
+  padding: 16px 20px;
+  background: rgba(25,28,37,.94);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0,0,0,.3);
+  animation: float 4s ease-in-out infinite;
+}
+
+.float-card strong {
+  display: block;
+  font-size: 1.35rem;
+}
+
+.float-card small {
+  color: var(--muted);
+}
+
+.float-one {
+  top: 15%;
+  right: 0;
+}
+
+.float-two {
+  bottom: 12%;
+  left: 0;
+  animation-delay: 1s;
+}
+
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes morph {
+  50% { border-radius: 60% 40% 35% 65%; }
+}
+
+@keyframes float {
+  50% { transform: translateY(-12px); }
+}
+
+/* ===== CLIENT STRIP ===== */
+.clients {
+  padding: 25px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.client-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.client-row span {
+  color: #858a9a;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+/* ===== ABOUT AND STATS ===== */
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.section-heading p {
+  max-width: 420px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 45px;
+}
+
+.stat {
+  padding: 25px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 18px;
+}
+
+.stat h3 {
+  font-size: 2.8rem;
+  color: var(--green);
+}
+
+.stat p {
+  margin-top: 7px;
+}
+
+/* ===== SERVICES ===== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.service-card {
+  padding: 30px;
+  background: linear-gradient(145deg, #181b24, #101219);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  transition: .3s;
+}
+
+.service-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(184,255,101,.5);
+}
+
+.service-icon {
+  width: 55px;
+  height: 55px;
+  display: grid;
+  place-items: center;
+  background: rgba(184,255,101,.1);
+  color: var(--green);
+  font-size: 1.7rem;
+  border-radius: 15px;
+  margin-bottom: 25px;
+}
+
+.service-card h3 {
+  font-size: 1.35rem;
+  margin-bottom: 12px;
+}
+
+/* ===== PROJECTS ===== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.project {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: .3s;
+}
+
+.project:hover {
+  transform: translateY(-6px);
+}
+
+.project-art {
+  min-height: 280px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.art-one {
+  background: linear-gradient(135deg, #d5f6bd, #75b78d);
+}
+
+.art-two {
+  background: linear-gradient(135deg, #e7caff, #9d8bdf);
+}
+
+.art-three {
+  background: linear-gradient(135deg, #ffcfb0, #e7836b);
+}
+
+.art-four {
+  background: linear-gradient(135deg, #bceaf5, #709bce);
+}
+
+.mockup {
+  width: 75%;
+  min-height: 190px;
+  padding: 25px;
+  background: rgba(255,255,255,.88);
+  color: #171c18;
+  border-radius: 15px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.15);
+  transform: rotate(-3deg);
+  transition: .3s;
+}
+
+.project:hover .mockup {
+  transform: rotate(0) scale(1.03);
+}
+
+.mockup small {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.mockup h3 {
+  font-size: clamp(1.7rem, 3vw, 2.7rem);
+  letter-spacing: -2px;
+}
+
+.mockup button {
+  margin-top: 18px;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  background: #18231a;
+  color: white;
+}
+
+.project-info {
+  padding: 23px;
+}
+
+.project-info p {
+  margin-top: 7px;
+  font-size: .9rem;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 13px;
+}
+
+.tags span {
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  padding: 4px 10px;
+  color: #c5c8d2;
+  font-size: .75rem;
+}
+
+/* ===== PROCESS ===== */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.process-card {
+  border-top: 2px solid var(--green);
+  padding-top: 22px;
+}
+
+.process-card .number {
+  color: var(--green);
+  font-size: .9rem;
+  font-weight: bold;
+}
+
+.process-card h3 {
+  margin: 16px 0 12px;
+}
+
+/* ===== TESTIMONIALS ===== */
+.testimonial {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(184,255,101,.1), transparent 40%),
+    var(--card);
+  border: 1px solid var(--border);
+  padding: 45px;
+  border-radius: 25px;
+}
+
+.quote-symbol {
+  color: var(--green);
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.quote-text {
+  font-size: clamp(1.3rem, 3vw, 2.2rem);
+  color: var(--white);
+  margin: 22px 0 30px;
+  max-width: 900px;
+}
+
+.quote-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.person small {
+  display: block;
+  color: var(--muted);
+}
+
+.quote-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.quote-buttons button {
+  width: 43px;
+  height: 43px;
+  background: transparent;
+  color: white;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.quote-buttons button:hover {
+  background: var(--green);
+  color: #111;
+}
+
+/* ===== CONTACT ===== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 50px;
+}
+
+.contact-copy > p {
+  margin: 20px 0 30px;
+}
+
+.contact-item {
+  margin: 22px 0;
+}
+
+.contact-item strong {
+  display: block;
+}
+
+.contact-form {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: .9rem;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #0c0e14;
+  color: white;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--green);
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-group option {
+  background: #0c0e14;
+}
+
+#formMessage {
+  color: var(--green);
+  margin-top: 12px;
+  font-size: .9rem;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  padding: 30px 0;
+  border-top: 1px solid var(--border);
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.footer-links a:hover {
+  color: var(--green);
+}
+
+.back-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: var(--green);
+  color: #111;
+  padding: 12px 16px;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: .3s;
+}
+
+.back-top.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity .7s, transform .7s;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    min-height: 380px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  section {
+    padding: 70px 0;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 78px;
+    left: 5%;
+    width: 90%;
+    padding: 15px;
+    background: #151821;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 12px;
+  }
+
+  nav > .btn {
+    display: none;
+  }
+
+  .hero {
+    padding: 65px 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 13vw, 4.5rem);
+    letter-spacing: -3px;
+  }
+
+  .hero-visual {
+    min-height: 330px;
+  }
+
+  .hero-ball {
+    width: 185px;
+    height: 185px;
+    font-size: 5rem;
+  }
+
+  .orbit {
+    width: 290px;
+  }
+
+  .float-card {
+    padding: 12px;
+  }
+
+  .float-one {
+    right: 0;
+  }
+
+  .float-two {
+    left: 0;
+  }
+
+  .section-heading {
+    display: block;
+  }
+
+  .section-heading p {
+    margin-top: 15px;
+  }
+
+  .services-grid,
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-art {
+    min-height: 240px;
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonial {
+    padding: 25px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .contact-form {
+    padding: 20px;
+  }
+
+  .footer-row {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .client-row {
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <nav class="container">
+    <a href="#home" class="logo">NOVA<span>.</span></a>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#work">Our Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <a href="#contact" class="btn btn-primary">Let's Talk ↗</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">☰</button>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-content reveal">
+      <span class="eyebrow">Independent Digital Company</span>
+
+      <h1>
+        Big ideas.<br>
+        Bold <span class="green">impact.</span>
+      </h1>
+
+      <p>
+        We help ambitious businesses build powerful brands, beautiful
+        websites, and digital experiences that turn ideas into results.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#work" class="btn btn-primary">Explore Our Work ↗</a>
+        <a href="#services" class="btn btn-outline">Discover Services ↓</a>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="orbit"></div>
+      <div class="hero-ball">N</div>
+
+      <div class="float-card float-one">
+        <small>Business growth</small>
+        <strong class="green">+148% ↗</strong>
+      </div>
+
+      <div class="float-card float-two">
+        <small>Our mindset</small>
+        <strong>Think different ✳</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLIENTS ===== -->
+<div class="clients">
+  <div class="container client-row">
+    <span>TRUSTED BY CREATIVE TEAMS</span>
+    <span>orbit®</span>
+    <span>FOLIO</span>
+    <span>northstar</span>
+    <span>PULSE.</span>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="container">
+    <div class="section-heading reveal">
+      <div>
+        <span class="eyebrow">Who We Are</span>
+        <h2>We make good things <span class="green">happen.</span></h2>
+      </div>
+
+      <p>
+        We combine creativity, strategy, and technology to help
+        businesses stand out and create meaningful experiences.
+      </p>
+    </div>
+
+    <div class="stats">
+      <div class="stat reveal">
+        <h3 data-target="8" data-suffix="+">0</h3>
+        <p>Years of experience</p>
+      </div>
+
+      <div class="stat reveal">
+        <h3 data-target="64" data-suffix="+">0</h3>
+        <p>Projects completed</p>
+      </div>
+
+      <div class="stat reveal">
+        <h3 data-target="21" data-suffix="">0</h3>
+        <p>Creative professionals</p>
+      </div>
+
+      <div class="stat reveal">
+        <h3 data-target="96" data-suffix="%">0</h3>
+        <p>Client satisfaction</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services">
+  <div class="container">
+    <div class="section-heading reveal">
+      <div>
+        <span class="eyebrow">Our Services</span>
+        <h2>Everything you need to <span class="green">stand out.</span></h2>
+      </div>
+
+      <p>
+        From the first idea to the final launch, we provide
+        creative and technical solutions for growing businesses.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <article class="service-card reveal">
+        <div class="service-icon">✳</div>
+        <h3>Brand Strategy</h3>
+        <p>Build a clear brand identity and communicate what makes your business unique.</p>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-icon">◈</div>
+        <h3>UI/UX Design</h3>
+        <p>Create user-friendly digital experiences that look beautiful and feel effortless.</p>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-icon">⌘</div>
+        <h3>Web Development</h3>
+        <p>Build responsive, fast, and modern websites for your business and customers.</p>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-icon">↗</div>
+        <h3>Digital Marketing</h3>
+        <p>Reach the right audience and grow your online presence with effective campaigns.</p>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-icon">◎</div>
+        <h3>Creative Design</h3>
+        <p>Develop engaging visuals, graphics, and digital content that people remember.</p>
+      </article>
+
+      <article class="service-card reveal">
+        <div class="service-icon">⌁</div>
+        <h3>Business Consulting</h3>
+        <p>Discover opportunities, solve challenges, and plan your next stage of growth.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PORTFOLIO ===== -->
+<section id="work">
+  <div class="container">
+    <div class="section-heading reveal">
+      <div>
+        <span class="eyebrow">Our Portfolio</span>
+        <h2>Ideas transformed into <span class="green">experiences.</span></h2>
+      </div>
+
+      <p>
+        Explore a few concept projects that demonstrate our
+        approach to design, branding, and digital experiences.
+      </p>
+    </div>
+
+    <div class="projects-grid">
+      <article class="project reveal">
+        <div class="project-art art-one">
+          <div class="mockup">
+            <small>GOODWELL / WELLNESS</small>
+            <h3>Better days<br>start here.</h3>
+            <button>Discover More ↗</button>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3>Goodwell — Wellness Brand</h3>
+          <p>Brand identity and website design</p>
+          <div class="tags">
+            <span>Branding</span><span>Web Design</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="project-art art-two">
+          <div class="mockup">
+            <small>FORMA / LIFESTYLE</small>
+            <h3>Make room<br>for wonder.</h3>
+            <button>Explore Collection ↗</button>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3>Forma — Lifestyle Store</h3>
+          <p>E-commerce and creative direction</p>
+          <div class="tags">
+            <span>E-commerce</span><span>Design</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="project-art art-three">
+          <div class="mockup">
+            <small>KINDRED / COMMUNITY</small>
+            <h3>A little more<br>human.</h3>
+            <button>Meet Your People ↗</button>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3>Kindred — Community Platform</h3>
+          <p>Product strategy and UI/UX design</p>
+          <div class="tags">
+            <span>Product</span><span>UI/UX</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="project-art art-four">
+          <div class="mockup">
+            <small>STRIDE / FITNESS</small>
+            <h3>Move at<br>your pace.</h3>
+            <button>Find Your Flow ↗</button>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3>Stride — Fitness Experience</h3>
+          <p>Digital campaign and marketing</p>
+          <div class="tags">
+            <span>Marketing</span><span>Strategy</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section id="process">
+  <div class="container">
+    <div class="section-heading reveal">
+      <div>
+        <span class="eyebrow">Our Process</span>
+        <h2>From idea to <span class="green">impact.</span></h2>
+      </div>
+
+      <p>
+        A transparent, collaborative process designed to
+        transform your vision into something real.
+      </p>
+    </div>
+
+    <div class="process-grid">
+      <article class="process-card reveal">
+        <span class="number">01 / DISCOVER</span>
+        <h3>Listen & Learn</h3>
+        <p>We understand your business, goals, audience, and challenges.</p>
+      </article>
+
+      <article class="process-card reveal">
+        <span class="number">02 / PLAN</span>
+        <h3>Think & Shape</h3>
+        <p>We develop the strategy and creative direction for your project.</p>
+      </article>
+
+      <article class="process-card reveal">
+        <span class="number">03 / CREATE</span>
+        <h3>Build & Refine</h3>
+        <p>We design, develop, test, and improve every important detail.</p>
+      </article>
+
+      <article class="process-card reveal">
+        <span class="number">04 / LAUNCH</span>
+        <h3>Launch & Grow</h3>
+        <p>We launch your project and help you identify future opportunities.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section id="testimonials">
+  <div class="container">
+    <div class="testimonial reveal">
+      <div class="quote-symbol">“</div>
+
+      <p class="quote-text" id="quoteText">
+        Nova brought clarity to our ideas and transformed them
+        into a digital experience our customers genuinely love.
+      </p>
+
+      <div class="quote-bottom">
+        <div class="person">
+          <strong id="personName">Sarah Kim</strong>
+          <small id="personRole">Founder, Goodwell</small>
+        </div>
+
+        <div class="quote-buttons">
+          <button id="prevQuote" aria-label="Previous testimonial">←</button>
+          <button id="nextQuote" aria-label="Next testimonial">→</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="container contact-grid">
+    <div class="contact-copy reveal">
+      <span class="eyebrow">Get In Touch</span>
+
+      <h2>Let's make something <span class="green">great.</span></h2>
+
+      <p>
+        Have a project in mind? Tell us about your idea.
+        We'd love to explore how we can help your business grow.
+      </p>
+
+      <div class="contact-item">
+        <span class="green">✉ Email</span>
+        <strong>hello@yourcompany.com</strong>
+      </div>
+
+      <div class="contact-item">
+        <span class="green">⌖ Location</span>
+        <strong>Your City, Your Country</strong>
+      </div>
+
+      <div class="contact-item">
+        <span class="green">◷ Working Hours</span>
+        <strong>Monday – Friday, 9 AM – 6 PM</strong>
+      </div>
+    </div>
+
+    <form class="contact-form reveal" id="contactForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input id="name" name="name" type="text"
+                 placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input id="email" name="email" type="email"
+                 placeholder="Enter your email" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="service">Choose a Service</label>
+        <select id="service" name="service" required>
+          <option value="">Select a service</option>
+          <option>Web Development</option>
+          <option>UI/UX Design</option>
+          <option>Branding</option>
+          <option>Digital Marketing</option>
+          <option>Business Consulting</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message"
+                  placeholder="Tell us about your project..." required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">
+        Send Message ↗
+      </button>
+
+      <p id="formMessage" role="status">
+        We'd love to hear from you!
+      </p>
+    </form>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container footer-row">
+    <a href="#home" class="logo">NOVA<span>.</span></a>
+
+    <p>© <span id="year"></span> Nova. All rights reserved.</p>
+
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#work">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<a href="#home" class="back-top" id="backTop" aria-label="Back to top">↑</a>
+
+<script>
+/* ===== MOBILE MENU ===== */
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", function () {
+  navLinks.classList.toggle("open");
+
+  menuBtn.textContent =
+    navLinks.classList.contains("open") ? "✕" : "☰";
+});
+
+navLinks.querySelectorAll("a").forEach(function (link) {
+  link.addEventListener("click", function () {
+    navLinks.classList.remove("open");
+    menuBtn.textContent = "☰";
+  });
+});
+
+/* ===== HEADER SCROLL EFFECT ===== */
+const backTop = document.getElementById("backTop");
+
+window.addEventListener("scroll", function () {
+  backTop.classList.toggle("show", window.scrollY > 400);
+});
+
+/* ===== SCROLL REVEAL ANIMATION ===== */
+const revealObserver = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(function (element) {
+  revealObserver.observe(element);
+});
+
+/* ===== ANIMATED STATISTICS ===== */
+const statObserver = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    if (!entry.isIntersecting) return;
+
+    const element = entry.target;
+    const target = Number(element.dataset.target);
+    const suffix = element.dataset.suffix || "";
+    const duration = 1200;
+    const start = performance.now();
+
+    function update(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+
+      element.textContent =
+        Math.round(target * eased) + suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    }
+
+    requestAnimationFrame(update);
+    statObserver.unobserve(element);
+  });
+}, { threshold: 0.6 });
+
+document.querySelectorAll("[data-target]").forEach(function (stat) {
+  statObserver.observe(stat);
+});
+
+/* ===== TESTIMONIAL SLIDER ===== */
+const testimonials = [
+  {
+    quote: "Nova brought clarity to our ideas and transformed them into a digital experience our customers genuinely love.",
+    name: "Sarah Kim",
+    role: "Founder, Goodwell"
+  },
+  {
+    quote: "The team understood our vision, challenged our thinking, and created a brand that feels fresh, clear, and memorable.",
+    name: "Daniel Reed",
+    role: "Director, Forma"
+  },
+  {
+    quote: "A thoughtful team, creative solutions, and a smooth process. We couldn't be happier with the final result.",
+    name: "Priya Shah",
+    role: "Co-founder, Kindred"
+  }
+];
+
+let currentQuote = 0;
+
+function showQuote(index) {
+  currentQuote =
+    (index + testimonials.length) % testimonials.length;
+
+  const item = testimonials[currentQuote];
+
+  document.getElementById("quoteText").textContent = item.quote;
+  document.getElementById("personName").textContent = item.name;
+  document.getElementById("personRole").textContent = item.role;
+}
+
+document.getElementById("prevQuote").addEventListener("click", function () {
+  showQuote(currentQuote - 1);
+});
+
+document.getElementById("nextQuote").addEventListener("click", function () {
+  showQuote(currentQuote + 1);
+});
+
+/* ===== CONTACT FORM DEMO ===== */
+document.getElementById("contactForm").addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+
+  document.getElementById("formMessage").textContent =
+    "Thank you, " + name +
+    "! Your form is working. Connect a backend to receive real messages.";
+
+  this.reset();
+});
+
+/* ===== AUTOMATIC COPYRIGHT YEAR ===== */
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+</script>
+
+</body>
+</html>
